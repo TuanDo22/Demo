@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+<div class="container">
+    <h2>Thêm Mới</h2>
+    <form action="/admin/edit" th:object="${OjStudent}" method="post" >
+        <div class="form-group" >
+            <label >Tên</label>
+            <input type="text" class="form-control" id="id" placeholder="Enter email"  th:field="*{id}">
+        </div>
+        <div class="form-group" >
+            <label >Tên</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter email"  th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label>Tuổi</label>
+            <input type="text" class="form-control" id="pwd" placeholder="Enter password"  th:field="*{age}">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Basic Table</h2>
+    <div>
+        <button onclick="add_button()">Thêm bảng mới</button>
+    </div>
+    <div>
+        <input type="text" class="btn_search">
+        <button onclick="search()" >Tim Kiem</button>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student:${student}" >
+            <td th:text="${student.id}" ></td>
+            <td th:text="${student.name}" ></td>
+            <td th:text="${student.age}" ></td>
+            <td>
+                <button class="btn_edit" th:attr="onclick=|btn_edit('${student.id}')|" >Edit</button>
+                <button class="btn_edit" th:attr="onclick=|btn_delete('${student.id}')|" >delet</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    function add_button(){
+        window.location.href="add";
+
+    }
+    function search(){
+        var txt_search = $(".btn_search").val()
+        window.location.href="search?txt_search=" + txt_search;
+    }
+    function btn_edit(id){
+        window.location.href="edit/"+id;
+    }
+    function btn_delete(id){
+        $.ajax({
+            url: "delete/"+id,
+            method: 'DELETE',
+            contentType: 'application/json',
+            success: function(result) {
+                console.log(result)
+            },
+            error: function(request,msg,error) {
+                // handle failure
+            }
+        });
+    }
+</script>
+</body>
+</html>
